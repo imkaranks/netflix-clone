@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./Navbar.css";
 import { logo, avatar } from '../assets';
+import { motion } from 'framer-motion';
 
 function Navbar() {
   const [ isExpanded, setIsExpanded ] = useState(false);
@@ -99,11 +100,17 @@ function Navbar() {
 
         {
           isExpanded && (
-            <nav className='fixed inset-0 z-40 bg-neutral-950 font-semibold flex justify-center items-center text-center' id='primary-navigation' aria-label='Mobile Navigation'>
+            <motion.nav
+              className='fixed inset-0 z-40 bg-neutral-950 font-semibold flex justify-center items-center text-center'
+              id='primary-navigation'
+              aria-label='Mobile Navigation'
+              initial={{opacity:0.5,x:'100vh'}}
+              animate={{opacity:1,x:0}}
+            >
               <ul className="list-none flex flex-col gap-4">
                 <ListItems />
               </ul>
-            </nav>
+            </motion.nav>
           )
         }
       </div>

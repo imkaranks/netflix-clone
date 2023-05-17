@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './MoviesSection.css';
 import { axios } from '../api'
 import MovieCard from '../components/MovieCard';
+import { motion } from 'framer-motion';
+import { heading } from '../utils/motion';
 
 function MoviesSection({ title, fetchURL }) {
   const [movies, setMovies] = useState([]);
@@ -18,7 +20,15 @@ function MoviesSection({ title, fetchURL }) {
   return (
     <section className='py-8'>
       <div className="movies__content | w-11/12 max-w-7xl mx-auto">
-        <h2 className="text-2xl font-bold">{title}</h2>
+        <motion.h2
+          className="text-2xl text-white font-bold"
+          variants={heading}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{once: true}}
+        >
+          {title}
+        </motion.h2>
         <div className="movies__content-cards | flex gap-4 mt-4 overflow-x-scroll">
           {
             Array.isArray(movies) && movies.slice(0, 6)
@@ -26,6 +36,7 @@ function MoviesSection({ title, fetchURL }) {
                 (movie.backdrop_path || movie.poster_path) && (
                   <MovieCard
                     key={index}
+                    delay={index}
                     {...movie}
                   />
                 )
