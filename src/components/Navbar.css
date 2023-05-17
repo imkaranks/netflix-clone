@@ -1,0 +1,24 @@
+[role="search"] {
+  display: grid;
+  justify-content: end;
+  grid-template-columns: 0fr min-content;
+  transition: grid-template-columns 300ms ease-in-out;
+}
+[role="search"]:has(input:focus-visible) {
+  outline: 1px solid red;
+  outline-offset: 2px;
+}
+[role="search"] > input {
+  overflow: hidden;
+}
+[role="search"] > button {
+  justify-self: end;
+}
+[role="search"]:has(button:hover),
+[role="search"]:has(button:focus),
+[role="search"]:has(input:hover),
+[role="search"]:has(input:focus) {
+  grid-template-columns: 1fr min-content;
+  padding-left: 1rem;
+  /* padding-right: 0.5rem; */
+}
