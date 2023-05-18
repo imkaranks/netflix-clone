@@ -6,12 +6,12 @@ function Main() {
   return (
     <main id='main-content'>
       <MoviesSection
-        title="Trending"
-        fetchURL={requests.fetchTrending}
-      />
-      <MoviesSection
         title="Netflix Originals"
         fetchURL={requests.fetchNetflixOriginals}
+      />
+      <MoviesSection
+        title="Trending"
+        fetchURL={requests.fetchTrending}
       />
       <MoviesSection
         title="Top Rated"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Navbar.css";
-import { logo, avatar } from '../assets';
+import { logo, avatar, menu, close, search, notifications } from '../assets/images';
 import { motion } from 'framer-motion';
 
 function Navbar() {
@@ -20,14 +20,43 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const variant = {
+    hide: {x: -10, y: -10, opacity: 0.25},
+    show: {x: 0, y: 0, opacity: 1}
+  }
+
   const ListItems = () => (
     <>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">TV Shows</a></li>
-      <li><a href="#">Movies</a></li>
-      <li><a href="#">News & Popular</a></li>
-      <li><a href="#">My List</a></li>
-      <li><a href="#">Browse By Languages</a></li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">Home</a>
+      </motion.li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">TV Shows</a>
+      </motion.li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">Movies</a>
+      </motion.li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">News & Popular</a>
+      </motion.li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">My List</a>
+      </motion.li>
+      <motion.li
+        variants={variant}
+      >
+        <a href="#">Browse By Languages</a>
+      </motion.li>
     </>
   );
 
@@ -46,9 +75,14 @@ function Navbar() {
           id='primary-navigation'
           aria-label='Primary'
         >
-          <ul className="list-none flex gap-4">
+          <motion.ul
+            className="list-none flex gap-4"
+            initial="hide"
+            animate="show"
+            transition={{staggerChildren: 0.1}}
+          >
             <ListItems />
-          </ul>
+          </motion.ul>
         </nav>
 
         <ul className="list-none flex items-center gap-4 ml-auto">
@@ -64,17 +98,25 @@ function Navbar() {
 
               <button
                 type='submit'
-                className='border-none bg-red-600 w-8 rounded-full aspect-square '
+                className='border-none bg-neutral-900 w-8 rounded-full aspect-square grid place-content-center'
               >
                 <span className='sr-only'>Submit Search</span>
-                <span aria-hidden="true">&#128269;</span>
+                <img
+                  src={search}
+                  alt=''
+                  role='image'
+                />
               </button>
             </form>
           </li>
           <li>
             <button>
               <span className="sr-only">Notification</span>
-              <span aria-hidden="true">&#128276;</span>
+              <img
+                src={notifications}
+                alt=''
+                role='image'
+              />
             </button>
           </li>
           <li className='lg:hidden'>
@@ -86,7 +128,11 @@ function Navbar() {
               onClick={() => setIsExpanded(!isExpanded)}
             >
               <span className="sr-only">{isExpanded ? 'Close' : 'Open'} Menu</span>
-              <span aria-hidden="true">&#9776;</span>
+              <img
+                src={isExpanded ? close : menu}
+                alt=''
+                role='image'
+              />
             </button>
           </li>
           <li>
