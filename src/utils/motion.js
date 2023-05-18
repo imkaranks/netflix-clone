@@ -1,16 +1,3 @@
-const staggerContent = {
-  hide: {
-    opacity: 1
-  },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.5,
-      delayChildren: 5
-    }
-  }
-}
-
 const card = {
   hover: {
     scale: 1.1,
@@ -18,13 +5,11 @@ const card = {
   },
   offscreen: {
     opacity: 0.25,
-    x: -50,
-    y: -50
+    x: -20,
   },
   onscreen: {
     opacity: 1,
     x: 0,
-    y: 0
   }
 }
 
@@ -52,4 +37,4 @@ const button = {
   }
 }
 
-export { staggerContent, card, heading, button };
+export { card, heading, button };

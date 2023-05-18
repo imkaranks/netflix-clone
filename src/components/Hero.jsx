@@ -10,9 +10,13 @@ function Hero() {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(requests.fetchNetflixOriginals);
-      setMovie(
-        response.data.results[Math.floor(Math.random() * response.data.results.length - 1)]
-      );
+      const {data: {results}} = response;
+      const randomInt = Math.floor(Math.random() * response.data.results.length - 1);
+      if (results[randomInt]?.backdrop_path || results[randomInt]?.poster_path) {
+        setMovie(results[randomInt]);
+      } else {
+        setMovie(results.find(result => result.backdrop_path || result.poster_path));
+      }
       return response;
     }
     fetchData();
@@ -39,7 +43,7 @@ function Hero() {
             {movie?.name || movie?.title || movie?.original_name}
           </motion.h1>
           <p className='text-2xl text-white font-bold'>
-            Trending in movies | Released - <time dateTime={movie.release_date || movie.first_air_date}>{movie.release_date || movie.first_air_date}</time>
+            Trending in movies | Released - <time dateTime={movie?.release_date || movie?.first_air_date}>{movie?.release_date || movie?.first_air_date}</time>
           </p>
           <p className='leading-relaxed'>{truncate(movie?.overview)}</p>
         </div>

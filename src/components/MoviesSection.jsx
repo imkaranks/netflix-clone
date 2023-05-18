@@ -29,20 +29,25 @@ function MoviesSection({ title, fetchURL }) {
         >
           {title}
         </motion.h2>
-        <div className="movies__content-cards | flex gap-4 mt-4 overflow-x-scroll">
+
+        <motion.div
+          className="movies__content-cards | flex gap-4 mt-4 overflow-x-scroll"
+          initial="offscreen"
+          whileInView="onscreen"
+          transition={{staggerChildren: 0.2}}
+        >
           {
             Array.isArray(movies) && movies.slice(0, 6)
               .map((movie, index) => (
                 (movie.backdrop_path || movie.poster_path) && (
                   <MovieCard
                     key={index}
-                    delay={index}
                     {...movie}
                   />
                 )
               ))
           }
-        </div>
+        </motion.div>
       </div>
     </section>
   );
