@@ -21,8 +21,8 @@ function Navbar() {
   }, []);
 
   const variant = {
-    hide: {x: -10, y: -10, opacity: 0.25},
-    show: {x: 0, y: 0, opacity: 1}
+    hide: {x: 50, opacity: 0},
+    show: {x: 0, opacity: 1}
   }
 
   const ListItems = () => (
@@ -153,9 +153,14 @@ function Navbar() {
               initial={{opacity:0.5,x:'100vh'}}
               animate={{opacity:1,x:0}}
             >
-              <ul className="list-none flex flex-col gap-4">
+              <motion.ul
+                className="list-none flex flex-col gap-4"
+                initial="hide"
+                animate="show"
+                transition={{staggerChildren: 0.1}}
+              >
                 <ListItems />
-              </ul>
+              </motion.ul>
             </motion.nav>
           )
         }
