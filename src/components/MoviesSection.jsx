@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { heading } from '../utils/motion';
 import { chevronLeft, chevronRight } from '../assets/images';
 
-function MoviesSection({ title, fetchURL }) {
+function MoviesSection({ title, fetchURL, handleClick }) {
   const [movies, setMovies] = useState([]);
   const sectionRef = useRef(null);
 
@@ -53,6 +53,7 @@ function MoviesSection({ title, fetchURL }) {
                 (movie.backdrop_path || movie.poster_path) && (
                   <MovieCard
                     key={index}
+                    handleClick={handleClick}
                     {...movie}
                   />
                 )

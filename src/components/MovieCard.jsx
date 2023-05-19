@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { card } from '../utils/motion';
 import './MovieCard.css';
 
-function MovieCard({ backdrop_path, poster_path, name, title, original_name }) {
+function MovieCard({ backdrop_path, poster_path, name, title, original_name, handleClick }) {
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -18,6 +18,7 @@ function MovieCard({ backdrop_path, poster_path, name, title, original_name }) {
       variants={card}
       whileHover="hover"
       // style={{ width: "245px", background: "#ccc" }}
+      onClick={() => handleClick(name || title || original_name)}
     >
       <img
         src={`https://image.tmdb.org/t/p/original${backdrop_path || poster_path}`}

@@ -9,7 +9,7 @@ function Hero() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(requests.fetchNetflixOriginals);
+      const response = await axios.get(requests.fetchTrending);
       const {data: {results}} = response;
       const randomInt = Math.floor(Math.random() * response.data.results.length - 1);
       if (results[randomInt]?.backdrop_path || results[randomInt]?.poster_path) {
