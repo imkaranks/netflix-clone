@@ -1,10 +1,13 @@
 # Netflix Clone
 
+This is a **Netflix clone** where I tried to implement some existing features and some of my own.
+
 ## Table of contents
 
 - [Overview](#overview)
   - [Responsive](#responsive)
   - [Screenshot](#screenshot)
+  - [Install and Run the Project](#install-and-run-the-project)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -22,6 +25,61 @@ Users should be able to:
 ### Screenshot
 
 ![](./design/netflix-desktop-view.jpg)
+
+### Install and Run the Project
+
+#### Step 1
+
+Install required dependencies.
+```
+npm install
+```
+
+#### Step 2
+
+We require these API(s) for this app to run.
+
+1. [TMDB API](https://www.themoviedb.org/)
+1. [Youtube Data API](https://developers.google.com/youtube/v3)
+
+**<small>Register Here and get your API Key</small>**
+
+#### Step 3
+
+Set the environment variable in <em>.env file</em> at root of the folder.
+
+In **Create React App** prefix variable with `REACT_APP`.\
+For example
+```
+REACT_APP_KEY="1234"
+```
+
+Access your variable with `process.env.REACT_APP_KEY`
+<br>
+<br>
+
+In **Vite** prefix variable with `VITE`.\
+For example
+```
+VITE_KEY="1234"
+```
+
+Access your variable with `import.meta.env.VITE_KEY`
+<br>
+<br>
+
+In Project I used these variables, feel free to change the variable names
+```
+VITE_TMDB_API_KEY=<Your Key Here>
+VITE_YT_API_KEY=<Your Key Here>
+```
+
+#### Step 4
+
+You're all set up. Start your app in development mode
+```
+npm run dev
+```
 
 ### Links
 
