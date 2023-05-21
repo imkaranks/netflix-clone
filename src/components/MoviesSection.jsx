@@ -31,7 +31,7 @@ function MoviesSection({ title, fetchURL, handleClick }) {
     <section className='py-8'>
       <div className="movies__content | relative w-11/12 max-w-7xl mx-auto">
         <motion.h2
-          className="text-2xl text-white font-bold"
+          className="text-xl text-white font-bold md:text-2xl"
           variants={heading}
           initial="offscreen"
           whileInView="onscreen"
@@ -45,6 +45,7 @@ function MoviesSection({ title, fetchURL, handleClick }) {
           initial="offscreen"
           whileInView="onscreen"
           transition={{staggerChildren: 0.2}}
+          viewport={{once: true}}
           ref={sectionRef}
         >
           {

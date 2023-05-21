@@ -76,7 +76,7 @@ function Navbar() {
           aria-label='Primary'
         >
           <motion.ul
-            className="list-none flex gap-4"
+            className="list-none flex gap-4 font-semibold"
             initial="hide"
             animate="show"
             transition={{staggerChildren: 0.1}}
@@ -154,7 +154,7 @@ function Navbar() {
               animate={{opacity:1,x:0}}
             >
               <motion.ul
-                className="list-none flex flex-col gap-4"
+                className="list-none flex flex-col gap-4 font-semibold"
                 initial="hide"
                 animate="show"
                 transition={{staggerChildren: 0.1}}

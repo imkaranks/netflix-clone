@@ -1,8 +1,4 @@
 const card = {
-  hover: {
-    scale: 1.1,
-    transition: { duration: 0.3 },
-  },
   offscreen: {
     opacity: 0.25,
     x: -20,

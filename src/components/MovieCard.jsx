@@ -16,8 +16,10 @@ function MovieCard({ backdrop_path, poster_path, name, title, original_name, han
     <motion.article
       className={`movie | relative basis-[245px] flex-shrink-0 bg-neutral-800 text-white ${pulsing ? "pulse" : ""} loadable`}
       variants={card}
-      whileHover="hover"
-      // style={{ width: "245px", background: "#ccc" }}
+      whileHover={{
+        scale: 1.1,
+        transition: { duration: 0.3 },
+      }}
       onClick={() => handleClick(name || title || original_name)}
     >
       <img

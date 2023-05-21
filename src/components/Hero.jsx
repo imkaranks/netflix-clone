@@ -30,7 +30,7 @@ function Hero() {
   }
 
   return (
-    <section className='relative isolate min-h-screen grid items-center' style={bgStyles}>
+    <section className='relative py-16 isolate min-h-screen grid items-center' style={bgStyles}>
       <div className="w-11/12 max-w-[7xl] mx-auto grid gap-4">
         <div className="max-w-[70ch] grid gap-4">
           <motion.h1
