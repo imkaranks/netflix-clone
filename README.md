@@ -1,7 +1,5 @@
 # Netflix Clone
 
-This is a **Netflix clone** where I tried to implement some existing features and some of my own.
-
 ## Table of contents
 
 - [Overview](#overview)
@@ -28,58 +26,59 @@ Users should be able to:
 
 ### Install and Run the Project
 
-#### Step 1
+- Step 1
 
-Install required dependencies.
-```
-npm install
-```
+  Install required dependencies.
 
-#### Step 2
+  ```
+  npm install
+  ```
 
-We require these API(s) for this app to run.
+- Step 2
 
-1. [TMDB API](https://www.themoviedb.org/)
-1. [Youtube Data API](https://developers.google.com/youtube/v3)
+  We require these API(s) for this app to run.
 
-**<small>Register Here and get your API Key</small>**
+  1. [TMDB API](https://www.themoviedb.org/)
+  1. [Youtube Data API](https://developers.google.com/youtube/v3)
 
-#### Step 3
+  **<small>Register Here and get your API Key</small>**
 
-Set the environment variable in <em>.env file</em> at root of the folder.
+- Step 3
 
-In **Create React App** prefix variable with `REACT_APP`.\
-For example
-```
-REACT_APP_KEY="1234"
-```
+  Set the environment variable in <em>.env file</em> at root of the folder.
 
-Access your variable with `process.env.REACT_APP_KEY`
-<br>
-<br>
+  In **Create React App** prefix variable with `REACT_APP`.\
+  For example
 
-In **Vite** prefix variable with `VITE`.\
-For example
-```
-VITE_KEY="1234"
-```
+  ```
+  REACT_APP_KEY="1234"
+  ```
 
-Access your variable with `import.meta.env.VITE_KEY`
-<br>
-<br>
+  Access your variable with `process.env.REACT_APP_KEY`
 
-In Project I used these variables, feel free to change the variable names
-```
-VITE_TMDB_API_KEY=<Your Key Here>
-VITE_YT_API_KEY=<Your Key Here>
-```
+  In **Vite** prefix variable with `VITE`.\
+  For example
 
-#### Step 4
+  ```
+  VITE_KEY="1234"
+  ```
 
-You're all set up. Start your app in development mode
-```
-npm run dev
-```
+  Access your variable with `import.meta.env.VITE_KEY`
+
+  Change the values with your registered API key.
+
+  ```
+  VITE_TMDB_API_KEY=<Your Key Here>
+  VITE_YT_API_KEY=<Your Key Here>
+  ```
+
+- Step 4
+
+  You're all set up. Start your app in development mode
+
+  ```
+  npm run dev
+  ```
 
 ### Links
 
