@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { play, info } from "../assets/images";
 import { axios, requests } from '../api';
 import { truncate } from '../utils';
 import { motion } from 'framer-motion';
@@ -49,19 +50,31 @@ function Hero() {
         </div>
         <div className="flex items-center gap-4">
           <motion.button
-            className="bg-neutral-100 border-none py-2 px-6 text-black font-semibold"
+            className="bg-neutral-100 inline-flex items-center gap-2 border-none py-2 px-6 text-black font-semibold"
             variants={button}
             whileHover="hover"
             whileTap="tap"
           >
+            <img
+              src={play}
+              alt=''
+              className='w-8 aspect-square'
+              role='image'
+            />
             Play Now
           </motion.button>
           <motion.button
-            className="bg-neutral-900 border-none py-2 px-6 text-white font-semibold"
+            className="bg-neutral-900 inline-flex items-center gap-2 border-none py-2 px-6 text-white font-semibold"
             variants={button}
             whileHover="hover"
             whileTap="tap"
           >
+            <img
+              src={info}
+              alt=''
+              className='w-8 aspect-square'
+              role='image'
+            />
             More Info
           </motion.button>
         </div>

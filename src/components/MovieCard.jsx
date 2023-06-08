@@ -14,7 +14,7 @@ function MovieCard({ backdrop_path, poster_path, name, title, original_name, han
 
   return (
     <motion.article
-      className={`movie | relative basis-[245px] flex-shrink-0 bg-neutral-800 text-white ${pulsing ? "pulse" : ""} loadable`}
+      className={`movie | relative basis-[200px] md:basis-[245px] flex-shrink-0 bg-neutral-800 text-white ${pulsing ? "pulse" : ""} loadable`}
       variants={card}
       whileHover={{
         scale: 1.1,

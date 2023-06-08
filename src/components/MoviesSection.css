@@ -1,10 +1,5 @@
 .movies__content-cards::-webkit-scrollbar { display: none; }
-.movies__scroll-control {
-  display: none;
-}
-.movies__content:hover .movies__scroll-control {
-  display: block;
-}
+
 @media (max-width: 768px) {
   .movies__scroll-control {
     display: none !important;

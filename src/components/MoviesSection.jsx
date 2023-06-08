@@ -62,13 +62,13 @@ function MoviesSection({ title, fetchURL, handleClick }) {
           }
         </motion.div>
         <button
-          className='movies__scroll-control | absolute top-12 bottom-0 left-0 w-6 bg-neutral-800'
+          className='movies__scroll-control | absolute top-12 bottom-0 -left-6 w-6'
           onClick={scrollBack}
         >
           <img src={chevronLeft} alt="previous" role='image' />
         </button>
         <button
-          className='movies__scroll-control | absolute top-12 bottom-0 right-0 w-6 bg-neutral-800'
+          className='movies__scroll-control | absolute top-12 bottom-0 -right-6 w-6'
           onClick={scrollNext}
         >
           <img src={chevronRight} alt="next" role='image' />

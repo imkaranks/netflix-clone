@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Navbar.css";
-import { logo, avatar, menu, close, search, notifications } from '../assets/images';
+import { logo, avatar, menu, close, search, notifications, arrowDropDown } from '../assets/images';
 import { motion } from 'framer-motion';
 
 function Navbar() {
@@ -52,16 +52,16 @@ function Navbar() {
       >
         <a href="#">My List</a>
       </motion.li>
-      <motion.li
+      {/* <motion.li
         variants={variant}
       >
         <a href="#">Browse By Languages</a>
-      </motion.li>
+      </motion.li> */}
     </>
   );
 
   return (
-    <section className={`nav | fixed top-0 left-0 right-0 z-50 text-white transition-colors ${isScrolled ? 'bg-neutral-950' : ''}`}>
+    <section className={`nav | fixed top-0 left-0 right-0 z-50 text-white transition-colors ${isScrolled ? 'bg-[rgba(0,0,0,.75)]' : ''}`}>
       <div className="nav__content | w-11/12 max-w-7xl mx-auto flex gap-6 items-center">
         <a href="#main-content" className="sr-only">skip to main content</a>
 
@@ -69,6 +69,7 @@ function Navbar() {
           src={logo}
           alt="Netflix Logo"
           className='max-w-[6.875rem] object-contain'
+          role='image'
         />
 
         <nav className='hidden lg:block'
@@ -135,11 +136,18 @@ function Navbar() {
               />
             </button>
           </li>
-          <li>
+          <li className='cursor-pointer flex items-center'>
             <img
               src={avatar}
-              alt="Avatar"
-              className='max-w-[2rem] object-contain rounded-full'
+              alt='Avatar'
+              className='max-w-[2rem] object-contain'
+              role='image'
+            />
+            <img
+              src={arrowDropDown}
+              alt=''
+              className='w-6'
+              role='image'
             />
           </li>
         </ul>
