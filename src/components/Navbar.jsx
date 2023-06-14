@@ -87,7 +87,7 @@ function Navbar() {
         </nav>
 
         <ul className="list-none flex items-center gap-4 ml-auto">
-          <li>
+          {/* <li>
             <form role='search' className='bg-neutral-900 p-1 rounded-full'>
               <label className='sr-only' htmlFor='navbar-search'>Search</label>
 
@@ -109,7 +109,7 @@ function Navbar() {
                 />
               </button>
             </form>
-          </li>
+          </li> */}
           <li>
             <button>
               <span className="sr-only">Notification</span>
