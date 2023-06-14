@@ -61,7 +61,7 @@ function Navbar() {
   );
 
   return (
-    <section className={`nav | fixed top-0 left-0 right-0 z-50 text-white transition-colors ${isScrolled ? 'bg-[rgba(0,0,0,.75)]' : ''}`}>
+    <section className={`nav | fixed top-0 left-0 right-0 z-50 text-white transition-colors ${isScrolled ? 'bg-[rgba(0,0,0,.75)] backdrop-blur' : ''}`}>
       <div className="nav__content | w-11/12 max-w-7xl mx-auto flex gap-6 items-center">
         <a href="#main-content" className="sr-only">skip to main content</a>
 
