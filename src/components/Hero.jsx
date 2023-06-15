@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { play, info } from "../assets/images";
 import { axios, requests } from '../api';
 import { truncate } from '../utils';
 import { motion } from 'framer-motion';
 import { heading, button } from '../utils/motion';
+import { AppContext } from '../App';
 
 function Hero() {
   const [movie, setMovie] = useState([]);
+  const { handleClick } = useContext(AppContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -54,6 +56,7 @@ function Hero() {
             variants={button}
             whileHover="hover"
             whileTap="tap"
+            onClick={() => handleClick(movie?.name || movie?.title || movie?.original_name, `https://image.tmdb.org/t/p/original${movie?.backdrop_path || movie?.poster_path}`)}
           >
             <img
               src={play}

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { close } from '../assets/images';
+import { AppContext } from '../App';
 
-function Player({ source, handleClick }) {
+function Player() {
   const [ isVideoLoaded, setIsVideoLoaded ] = useState(false);
+  const { videoSrc, setPlayerHidden } = useContext(AppContext);
 
   return (
     <motion.div
@@ -13,7 +15,7 @@ function Player({ source, handleClick }) {
     >
       <button
         className='absolute right-0 top-0 bg-red-600 p-1'
-        onClick={() => handleClick(null)}
+        onClick={() => setPlayerHidden(true)}
       >
         <img
           src={close}
@@ -23,7 +25,7 @@ function Player({ source, handleClick }) {
         />
       </button>
       <iframe
-        src={source}
+        src={videoSrc}
         allowFullScreen="allowfullscreen"
         mozallowfullscreen="mozallowfullscreen" 
         msallowfullscreen="msallowfullscreen" 

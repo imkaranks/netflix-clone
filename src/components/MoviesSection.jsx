@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './MoviesSection.css';
 import { axios } from '../api'
-import MovieCard from '../components/MovieCard';
 import { motion } from 'framer-motion';
 import { heading } from '../utils/motion';
 import { chevronLeft, chevronRight } from '../assets/images';
+import { AppContext } from '../App';
+import MovieCard from '../components/MovieCard';
+import './MoviesSection.css';
 
-function MoviesSection({ title, fetchURL, handleClick }) {
+function MoviesSection({ title, fetchURL }) {
   const [movies, setMovies] = useState([]);
   const sectionRef = useRef(null);
 
@@ -54,7 +55,6 @@ function MoviesSection({ title, fetchURL, handleClick }) {
                 (movie.backdrop_path || movie.poster_path) && (
                   <MovieCard
                     key={index}
-                    handleClick={handleClick}
                     {...movie}
                   />
                 )

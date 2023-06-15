@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "./Navbar.css";
 import { logo, avatar, menu, close, search, notifications, arrowDropDown } from '../assets/images';
 import { motion } from 'framer-motion';
+import "./Navbar.css";
 
 function Navbar() {
   const [ isExpanded, setIsExpanded ] = useState(false);
@@ -155,7 +155,7 @@ function Navbar() {
         {
           isExpanded && (
             <motion.nav
-              className='fixed inset-0 z-40 bg-neutral-950 font-semibold flex justify-center items-center text-center'
+              className='fixed inset-0 z-40 h-screen bg-neutral-950 font-semibold flex justify-center items-center text-center'
               id='primary-navigation'
               aria-label='Mobile Navigation'
               initial={{opacity:0.5,x:'100vh'}}

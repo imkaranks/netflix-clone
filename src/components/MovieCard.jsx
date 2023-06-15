@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { card } from '../utils/motion';
+import { AppContext } from '../App';
 import './MovieCard.css';
 
-function MovieCard({ backdrop_path, poster_path, name, title, original_name, handleClick }) {
+function MovieCard({ backdrop_path, poster_path, name, title, original_name }) {
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
+  const { handleClick } = useContext(AppContext);
 
   const imageLoaded = () => {
     setImageLoading(false);
-    setTimeout(() => setPulsing(false), 600);
+    setTimeout(() => setPulsing(false), 300);
   };
 
   return (
@@ -20,7 +22,7 @@ function MovieCard({ backdrop_path, poster_path, name, title, original_name, han
         scale: 1.1,
         transition: { duration: 0.3 },
       }}
-      onClick={() => handleClick(name || title || original_name)}
+      onClick={() => handleClick(name || title || original_name, `https://image.tmdb.org/t/p/original${backdrop_path || poster_path}`)}
     >
       <img
         src={`https://image.tmdb.org/t/p/original${backdrop_path || poster_path}`}

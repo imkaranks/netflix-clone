@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
-import { axios, requests } from '../api';
+import { requests } from '../api';
+import { close, angryFace, sadFace, happyFace, romanticFace } from '../assets/images';
+import { AppContext } from '../App';
 import MoviesSection from '../components/MoviesSection';
 import Player from '../components/Player';
-import { angryFace, sadFace, happyFace, romanticFace } from '../assets/images';
 
 const moodCard = {
   initial: {
@@ -17,8 +18,7 @@ const moodCard = {
 }
 
 function Main() {
-  const [ movieTitle, setMovieTitle ] = useState(null);
-  const [ youtubeSrc, setYoutubeSrc ] = useState(null);
+  const { playerHidden } = useContext(AppContext);
   const [ userMood, setUserMood ] = useState(null);
   const [ hidden, setHidden ] = useState(false);
 
@@ -30,33 +30,8 @@ function Main() {
     fetchNetflixOriginals,
     fetchRomanceMovies,
     fetchTopRated,
-    fetchTrending,
-    searchOnYoutube
+    fetchTrending
   } = requests;
-
-  function handleClick(_movieTitle) {
-    setMovieTitle(_movieTitle);
-  }
-
-  useEffect(() => {
-    if (movieTitle) {
-      searchMovieTrailer(movieTitle)
-        .then(videoId => {
-          setYoutubeSrc(`https://www.youtube.com/embed/${videoId}?autoplay=1`);
-        });
-    }
-  }, [movieTitle]);
-  
-  function searchMovieTrailer(_movieTitle) {
-    if (!_movieTitle) return;
-    
-    return axios.get(searchOnYoutube(`${_movieTitle} trailer`))
-      .then(response => {
-        const topResult = response.data.items[0];
-        return topResult.id.videoId;
-      })
-      .catch(err => console.error(err));
-  }
 
   return (
     <main id='main-content'>
@@ -76,7 +51,6 @@ function Main() {
               ? fetchRomanceMovies :
               fetchActionMovies
             }
-            handleClick={handleClick}
           />
         </> :
         <form className={`fixed z-40 left-0 bottom-0 right-0 backdrop-blur py-6 sm:py-8 text-center ${hidden && 'hidden'}`} style={{backgroundColor: 'rgb(0 0 0 / .5)'}} onSubmit={ev => ev.preventDefault()}>
@@ -169,58 +143,50 @@ function Main() {
               </motion.div>
             </div>
           </fieldset>
-          <button className='absolute top-0 right-0 bg-red-600 w-6 aspect-square' onClick={() => setHidden(true)}>
-            <span>&#x2715;</span>
+          <button className='flex justify-center items-center absolute top-0 right-0 bg-red-600 w-6 aspect-square' onClick={() => setHidden(true)}>
+            <img
+              src={close}
+              alt="close"
+              width="20px"
+              height="20px"
+            />
           </button>
         </form>
       }
       <MoviesSection
         title="Netflix Originals"
         fetchURL={fetchNetflixOriginals}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Trending"
         fetchURL={fetchTrending}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Top Rated"
         fetchURL={fetchTopRated}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Action"
         fetchURL={fetchActionMovies}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Horror"
         fetchURL={fetchHorrorMovies}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Romance"
         fetchURL={fetchRomanceMovies}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Comedy"
         fetchURL={fetchComedyMovies}
-        handleClick={handleClick}
       />
       <MoviesSection
         title="Documentaries"
         fetchURL={fetchDocumentaries}
-        handleClick={handleClick}
       />
       {
-        movieTitle && (
-          <Player
-            source={youtubeSrc}
-            handleClick={handleClick}
-          />
-        )
+        !playerHidden && <Player />
       }
     </main>
   );
