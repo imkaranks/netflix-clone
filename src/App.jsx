@@ -13,6 +13,7 @@ function App() {
 
   function handleClick(_movieTitle, _imgURL) {
     setCurrentMovie(_movieTitle);
+    setPlayerHidden(false);
   }
 
   useEffect(() => {

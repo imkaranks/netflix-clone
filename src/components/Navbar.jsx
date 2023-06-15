@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { logo, avatar, menu, close, search, notifications, arrowDropDown } from '../assets/images';
 import { motion } from 'framer-motion';
-import "./Navbar.css";
 
 function Navbar() {
   const [ isExpanded, setIsExpanded ] = useState(false);
@@ -52,11 +51,6 @@ function Navbar() {
       >
         <a href="#">My List</a>
       </motion.li>
-      {/* <motion.li
-        variants={variant}
-      >
-        <a href="#">Browse By Languages</a>
-      </motion.li> */}
     </>
   );
 
@@ -87,29 +81,6 @@ function Navbar() {
         </nav>
 
         <ul className="list-none flex items-center gap-4 ml-auto">
-          {/* <li>
-            <form role='search' className='bg-neutral-900 p-1 rounded-full'>
-              <label className='sr-only' htmlFor='navbar-search'>Search</label>
-
-              <input
-                type='text'
-                id='navbar-search'
-                className='bg-transparent outline-none'
-              />
-
-              <button
-                type='submit'
-                className='border-none bg-neutral-900 w-8 rounded-full aspect-square grid place-content-center'
-              >
-                <span className='sr-only'>Submit Search</span>
-                <img
-                  src={search}
-                  alt=''
-                  role='image'
-                />
-              </button>
-            </form>
-          </li> */}
           <li>
             <button>
               <span className="sr-only">Notification</span>
