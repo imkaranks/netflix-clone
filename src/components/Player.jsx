@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { close } from '../assets/images';
-import { AppContext } from '../App';
+import VideoContext from '../context/VideoContext';
 
 function Player() {
   const [ isVideoLoaded, setIsVideoLoaded ] = useState(false);
-  const { videoSrc, setPlayerHidden } = useContext(AppContext);
+  const { trailerSrc, setPlayerHidden } = useContext(VideoContext);
 
   return (
     <motion.div
@@ -25,7 +25,7 @@ function Player() {
         />
       </button>
       <iframe
-        src={videoSrc}
+        src={trailerSrc}
         allowFullScreen="allowfullscreen"
         mozallowfullscreen="mozallowfullscreen" 
         msallowfullscreen="msallowfullscreen" 

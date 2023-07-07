@@ -1,23 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { axios } from '../api'
 import { motion } from 'framer-motion';
 import { heading } from '../utils/motion';
 import { chevronLeft, chevronRight } from '../assets/images';
-import { AppContext } from '../App';
 import MovieCard from '../components/MovieCard';
+import MovieContext from '../context/MovieContext';
 import './MoviesSection.css';
 
-function MoviesSection({ title, fetchURL }) {
-  const [movies, setMovies] = useState([]);
+function MoviesSection({ title, fetchURL, moviesData=null }) {
+  const [fetchedMovies, setFetchedMovies] = useState([]);
   const sectionRef = useRef(null);
+  const { setMovies } = useContext(MovieContext);
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(fetchURL);
-      setMovies(response.data.results);
+      setFetchedMovies(response.data.results);
+      setMovies(prevMovies => ({
+        ...prevMovies,
+        [title]: response.data.results.splice(0, 2).map(movie => ({
+          ...movie,
+          genre: title
+        }))
+      }));
       return response;
     }
-    fetchData();
+    moviesData ?? fetchData();
   }, []);
 
   function scrollBack() {
@@ -26,6 +34,30 @@ function MoviesSection({ title, fetchURL }) {
 
   function scrollNext() {
     sectionRef.current.scrollLeft += 261;
+  }
+
+  function movieCards() {
+    if (!moviesData) {
+      return Array.isArray(fetchedMovies) && fetchedMovies.slice(0, 6)
+        .map((movie, index) => (
+          (movie.backdrop_path || movie.poster_path) && (
+            <MovieCard
+              key={index}
+              {...movie}
+            />
+          )
+        ));
+    } else {
+      return Array.isArray(moviesData) && moviesData.slice(0, 6)
+        .map((movie, index) => (
+          (movie.backdrop_path || movie.poster_path) && (
+            <MovieCard
+              key={index}
+              {...movie}
+            />
+          )
+        ));
+    }
   }
 
   return (
@@ -49,17 +81,7 @@ function MoviesSection({ title, fetchURL }) {
           viewport={{once: true}}
           ref={sectionRef}
         >
-          {
-            Array.isArray(movies) && movies.slice(0, 6)
-              .map((movie, index) => (
-                (movie.backdrop_path || movie.poster_path) && (
-                  <MovieCard
-                    key={index}
-                    {...movie}
-                  />
-                )
-              ))
-          }
+          {movieCards()}
         </motion.div>
         <button
           className='movies__scroll-control | absolute top-12 bottom-0 -left-6 w-6'

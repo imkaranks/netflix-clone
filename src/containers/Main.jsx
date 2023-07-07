@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { requests } from '../api';
 import { close, angryFace, sadFace, happyFace, romanticFace } from '../assets/images';
-import { AppContext } from '../App';
+import VideoContext from '../context/VideoContext';
+import MovieContext from '../context/MovieContext';
 import MoviesSection from '../components/MoviesSection';
 import Player from '../components/Player';
 
@@ -18,9 +19,21 @@ const moodCard = {
 }
 
 function Main() {
-  const { playerHidden } = useContext(AppContext);
+  const { playerHidden } = useContext(VideoContext);
   const [ userMood, setUserMood ] = useState(null);
   const [ hidden, setHidden ] = useState(false);
+  const {
+    movies: {
+      Action,
+      Comedy,
+      Romance,
+      Documentaries,
+      Horror,
+      'Netflix Originals': Originals,
+      'Top Rated': TopRated,
+      Trending
+    }
+  } = useContext(MovieContext);
 
   const {
     fetchActionMovies,
@@ -39,17 +52,17 @@ function Main() {
         userMood !== null
         ? <>
           <MoviesSection
-            title="Our Recommendations"
-            fetchURL={
+            title="Recommendations"
+            moviesData={
               userMood === 'sad'
-              ? fetchComedyMovies :
+              ? [...Comedy, ...Action, ...Romance] :
               userMood === 'angry'
-              ? fetchComedyMovies :
+              ? [...Comedy, ...Romance, ...Documentaries] :
               userMood === 'happy'
-              ? fetchComedyMovies :
+              ? [...Horror, ...Action, ...Comedy] :
               userMood === 'romantic'
-              ? fetchRomanceMovies :
-              fetchActionMovies
+              ? [...Romance, ...Comedy, ...Originals] :
+              [...TopRated, ...Trending, ...Documentaries]
             }
           />
         </> :

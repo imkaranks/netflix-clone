@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { axios, requests } from './api';
-export const AppContext = React.createContext();
+import MovieContext from './context/MovieContext';
+import VideoContext from './context/VideoContext';
 import Header from './containers/Header';
 import Main from './containers/Main';
 
 function App() {
   const [ currentMovie, setCurrentMovie ] = useState(null);
-  const [ videoSrc, setVideoSrc ] = useState(null);
+  const [ movies, setMovies ] = useState({});
+  const [ trailerSrc, setTrailerSrc ] = useState(null);
   const [ playerHidden, setPlayerHidden ] = useState(true);
+  console.log(movies);
 
   const { searchOnYoutube } = requests;
 
@@ -20,7 +23,7 @@ function App() {
     if (currentMovie) {
       searchMovieTrailer(currentMovie)
         .then(videoId => {
-          setVideoSrc(`https://www.youtube.com/embed/${videoId}?autoplay=1`);
+          setTrailerSrc(`https://www.youtube.com/embed/${videoId}?autoplay=1`);
         });
     }
   }, [currentMovie]);
@@ -37,19 +40,24 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{
+    <MovieContext.Provider value={{
+      movies,
+      setMovies,
       currentMovie,
-      setCurrentMovie,
-      videoSrc,
-      setVideoSrc,
-      handleClick,
-      searchMovieTrailer,
-      playerHidden,
-      setPlayerHidden
+      setCurrentMovie
     }}>
-      <Header />
-      <Main />
-    </AppContext.Provider>
+      <VideoContext.Provider value={{
+        trailerSrc,
+        setTrailerSrc,
+        handleClick,
+        searchMovieTrailer,
+        playerHidden,
+        setPlayerHidden
+      }}>
+        <Header />
+        <Main />
+      </VideoContext.Provider>
+    </MovieContext.Provider>
   );
 }
 
