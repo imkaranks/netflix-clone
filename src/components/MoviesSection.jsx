@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import { heading } from '../utils/motion';
 import { chevronLeft, chevronRight } from '../assets/images';
 import MovieCard from '../components/MovieCard';
-import MovieContext from '../context/MovieContext';
+import { useMovie } from '../hooks';
 import './MoviesSection.css';
 
 function MoviesSection({ title, fetchURL, moviesData=null }) {
   const [fetchedMovies, setFetchedMovies] = useState([]);
   const sectionRef = useRef(null);
-  const { setMovies } = useContext(MovieContext);
+  const { setMovies } = useMovie();
 
   useEffect(() => {
     async function fetchData() {

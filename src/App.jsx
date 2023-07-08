@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { axios, requests } from './api';
 import MovieContext from './context/MovieContext';
 import VideoContext from './context/VideoContext';
@@ -10,7 +10,6 @@ function App() {
   const [ movies, setMovies ] = useState({});
   const [ trailerSrc, setTrailerSrc ] = useState(null);
   const [ playerHidden, setPlayerHidden ] = useState(true);
-  console.log(movies);
 
   const { searchOnYoutube } = requests;
 

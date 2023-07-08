@@ -4,11 +4,11 @@ import { axios, requests } from '../api';
 import { truncate } from '../utils';
 import { motion } from 'framer-motion';
 import { heading, button } from '../utils/motion';
-import VideoContext from '../context/VideoContext';
+import { useVideo } from '../hooks';
 
 function Hero() {
   const [movie, setMovie] = useState([]);
-  const { handleClick } = useContext(VideoContext);
+  const { handleClick } = useVideo();
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +35,7 @@ function Hero() {
   return (
     <section className='relative py-16 isolate min-h-screen grid items-center' style={bgStyles}>
       <div className="w-11/12 max-w-[7xl] mx-auto grid gap-4">
-        <div className="max-w-[70ch] grid gap-2">
+        <div className="max-w-[70ch] grid gap-4">
           <span className='w-fit text-white font-semibold px-4 py-2 rounded-full bg-white/20 backdrop-blur-md'>New Movie</span>
           <motion.h1
             className="text-5xl text-white font-bold sm:text-6xl md:text-7xl lg:text-[84px]"
@@ -46,9 +46,9 @@ function Hero() {
           >
             {movie?.name || movie?.title || movie?.original_name}
           </motion.h1>
-          <p className='mt-4 leading-relaxed'>{truncate(movie?.overview)}</p>
+          <p className='leading-relaxed'>{truncate(movie?.overview)}</p>
         </div>
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex flex-wrap items-center gap-4 mt-4">
           <motion.button
             className="bg-neutral-100 inline-flex items-center gap-2 border border-white py-2 px-6 text-black font-semibold rounded-full"
             variants={button}

@@ -1,6 +1,6 @@
 .movies__content-cards::-webkit-scrollbar { display: none; }
 
-@media (max-width: 768px) {
+@media (hover: none) or (max-width: 640px) {
   .movies__scroll-control {
     display: none !important;
   }

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { close } from '../assets/images';
-import VideoContext from '../context/VideoContext';
+import { useVideo } from '../hooks';
 
 function Player() {
   const [ isVideoLoaded, setIsVideoLoaded ] = useState(false);
-  const { trailerSrc, setPlayerHidden } = useContext(VideoContext);
+  const { trailerSrc, setPlayerHidden } = useVideo();
 
   return (
     <motion.div
