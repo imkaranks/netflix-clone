@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { logo, avatar, menu, close, search, notifications, arrowDropDown } from '../assets/images';
 import { motion } from 'framer-motion';
 
@@ -29,27 +30,27 @@ function Navbar() {
       <motion.li
         variants={variant}
       >
-        <a href="#">Home</a>
+        <Link to='/'>Home</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <a href="#">TV Shows</a>
+        <Link to='/'>TV Shows</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <a href="#">Movies</a>
+        <Link to='/'>Movies</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <a href="#">News & Popular</a>
+        <Link to='/'>News & Popular</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <a href="#">My List</a>
+        <Link to='/'>My List</Link>
       </motion.li>
     </>
   );
@@ -59,19 +60,21 @@ function Navbar() {
       <div className="nav__content | w-11/12 max-w-7xl mx-auto flex gap-6 items-center">
         <a href="#main-content" className="sr-only">skip to main content</a>
 
-        <img
-          src={logo}
-          alt="Netflix Logo"
-          className='max-w-[6.875rem] object-contain'
-          role='image'
-        />
+        <Link to='/'>
+          <img
+            src={logo}
+            alt="Netflix Logo"
+            className='max-w-[6.875rem] object-contain'
+            role='image'
+          />
+        </Link>
 
         <nav className='hidden lg:block'
           id='primary-navigation'
           aria-label='Primary'
         >
           <motion.ul
-            className="list-none flex gap-4 font-semibold"
+            className="list-none flex gap-4 sm:gap-8 font-semibold"
             initial="hide"
             animate="show"
             transition={{staggerChildren: 0.1}}

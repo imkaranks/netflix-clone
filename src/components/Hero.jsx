@@ -5,6 +5,7 @@ import { truncate } from '../utils';
 import { motion } from 'framer-motion';
 import { heading, button } from '../utils/motion';
 import { useVideo } from '../hooks';
+import { Link } from 'react-router-dom';
 
 function Hero() {
   const [movie, setMovie] = useState([]);
@@ -64,20 +65,22 @@ function Hero() {
             />
             Play Now
           </motion.button>
-          <motion.button
-            className="bg-white/5 backdrop-blur-sm inline-flex items-center gap-2 border border-white py-2 px-6 text-white font-semibold rounded-full"
-            variants={button}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            <img
-              src={info}
-              alt=''
-              className='w-8 aspect-square'
-              role='image'
-            />
-            More Info
-          </motion.button>
+          <Link to={`/movie/${movie.id}`}>
+            <motion.button
+              className="bg-white/5 backdrop-blur-sm inline-flex items-center gap-2 border border-white py-2 px-6 text-white font-semibold rounded-full"
+              variants={button}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <img
+                src={info}
+                alt=''
+                className='w-8 aspect-square'
+                role='image'
+              />
+              More Info
+            </motion.button>
+          </Link>
         </div>
       </div>
       <div className='absolute inset-0 -z-10' style={{backgroundImage: 'linear-gradient(90deg, hsl(0 0% 0% / 65%) 35%, transparent)'}}></div>

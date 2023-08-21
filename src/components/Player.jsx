@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { close } from '../assets/images';
 import { useVideo } from '../hooks';

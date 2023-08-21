@@ -1,28 +1,28 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import { axios } from '../api'
+import React, { useEffect, useRef, useState } from 'react';
+import { axios } from '../../api'
 import { motion } from 'framer-motion';
-import { heading } from '../utils/motion';
-import { chevronLeft, chevronRight } from '../assets/images';
-import MovieCard from '../components/MovieCard';
-import { useMovie } from '../hooks';
+import { heading } from '../../utils/motion';
+import { chevronLeft, chevronRight } from '../../assets/images';
+import MovieCard from '../../components/MovieCard/MovieCard';
+// import { useMovie } from '../hooks';
 import './MoviesSection.css';
 
 function MoviesSection({ title, fetchURL, moviesData=null }) {
   const [fetchedMovies, setFetchedMovies] = useState([]);
   const sectionRef = useRef(null);
-  const { setMovies } = useMovie();
+  // const { setMovies } = useMovie();
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(fetchURL);
       setFetchedMovies(response.data.results);
-      setMovies(prevMovies => ({
-        ...prevMovies,
-        [title]: response.data.results.splice(0, 2).map(movie => ({
-          ...movie,
-          genre: title
-        }))
-      }));
+      // setMovies(prevMovies => ({
+      //   ...prevMovies,
+      //   [title]: response.data.results.splice(0, 2).map(movie => ({
+      //     ...movie,
+      //     genre: title
+      //   }))
+      // }));
       return response;
     }
     moviesData ?? fetchData();

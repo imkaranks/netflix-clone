@@ -9,7 +9,9 @@ const requests = {
   fetchHorrorMovies: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
   fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
-  searchOnYoutube: (query) => `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${import.meta.env.VITE_YT_API_KEY}`
+  searchOnYoutube: (query) => `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${import.meta.env.VITE_YT_API_KEY}`,
+  fetchMovieById: (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`,
+  searchMovieByKeyword: (keyword) => ``
 }
 
 export default requests;
