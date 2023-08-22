@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import { logo, avatar, menu, close, search, notifications, arrowDropDown } from '../assets/images';
 import { motion } from 'framer-motion';
 
+const variant = {
+  hide: {x: 50, opacity: 0},
+  show: {x: 0, opacity: 1}
+}
+
 function Navbar() {
   const [ isExpanded, setIsExpanded ] = useState(false);
   const [ isScrolled, setIsScrolled ] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 70) {
       setIsScrolled(true);
     } else {
       setIsScrolled(false);
@@ -20,37 +25,37 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const variant = {
-    hide: {x: 50, opacity: 0},
-    show: {x: 0, opacity: 1}
-  }
+  const collapseMenu = () => {
+    if (!isExpanded) return;
+    setIsExpanded(false);
+  };
 
   const ListItems = () => (
     <>
       <motion.li
         variants={variant}
       >
-        <Link to='/'>Home</Link>
+        <Link to='/' onClick={collapseMenu}>Home</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <Link to='/'>TV Shows</Link>
+        <Link to='/' onClick={collapseMenu}>TV Shows</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <Link to='/'>Movies</Link>
+        <Link to='/' onClick={collapseMenu}>Movies</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <Link to='/'>News & Popular</Link>
+        <Link to='/' onClick={collapseMenu}>News & Popular</Link>
       </motion.li>
       <motion.li
         variants={variant}
       >
-        <Link to='/'>My List</Link>
+        <Link to='/' onClick={collapseMenu}>My List</Link>
       </motion.li>
     </>
   );
@@ -74,7 +79,7 @@ function Navbar() {
           aria-label='Primary'
         >
           <motion.ul
-            className="list-none flex gap-4 sm:gap-8 font-semibold"
+            className="list-none flex items-center gap-4 sm:gap-8 font-semibold"
             initial="hide"
             animate="show"
             transition={{staggerChildren: 0.1}}
@@ -85,11 +90,20 @@ function Navbar() {
 
         <ul className="list-none flex items-center gap-4 ml-auto">
           <li>
+            <Link to='/search'>
+              <img
+                src={search}
+                alt='Search'
+                role='image'
+              />
+            </Link>
+          </li>
+          <li>
             <button>
               <span className="sr-only">Notification</span>
               <img
                 src={notifications}
-                alt=''
+                alt='Notification'
                 role='image'
               />
             </button>

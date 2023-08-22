@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { axios, requests } from '../api';
 import { useVideo } from '../hooks';
-import Loader from './Loader';
-import Player from './Player';
+import Loader from '../components/Loader';
+import Player from '../components/Player';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -47,14 +47,14 @@ function MovieDetails() {
       ? <Loader />
       : <>
         <article className='flex flex-col min-h-screen sm:flex-row'>
-          <div className='max-h-96 sm:w-2/5 sm:max-h-none relative before:content-[""] before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-black/75 before:from-0% before:to-transparent before:to-20%'>
+          <div className='max-h-96 overflow-hidden sm:w-2/5 sm:max-h-none relative before:content-[""] before:absolute before:inset-0 before:z-10 before:bg-gradient-to-b before:from-black/75 before:from-0% before:to-transparent before:to-20%'>
             <img
-              className='w-full h-full object-cover object-center'
+              className='w-full h-full max-h-screen object-cover object-center'
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path || movie.poster_path}`}
               alt={movie.name || movie.title || movie.original_name}
             />
           </div>
-          <div className='text-[#999] sm:self-center sm:flex-1 px-4 sm:px-8 py-6 sm:py-20'>
+          <div className='text-[#999] sm:max-h-screen sm:overflow-y-auto sm:self-center sm:flex-1 px-4 sm:px-8 md:px-14 py-6 sm:py-20'>
             <h2 className='text-white text-3xl sm:text-4xl font-semibold leading-none'>{movie.name || movie.title || movie.original_name}</h2>
 
             <ul className='flex mt-2 flex-wrap gap-2 items-center text-sm font-medium'>

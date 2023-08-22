@@ -14,16 +14,20 @@ function MoviesSection({ title, fetchURL, moviesData=null }) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(fetchURL);
-      setFetchedMovies(response.data.results);
-      // setMovies(prevMovies => ({
-      //   ...prevMovies,
-      //   [title]: response.data.results.splice(0, 2).map(movie => ({
-      //     ...movie,
-      //     genre: title
-      //   }))
-      // }));
-      return response;
+      try {
+        const response = await axios.get(fetchURL);
+        setFetchedMovies(response.data.results);
+        // setMovies(prevMovies => ({
+        //   ...prevMovies,
+        //   [title]: response.data.results.splice(0, 2).map(movie => ({
+        //     ...movie,
+        //     genre: title
+        //   }))
+        // }));
+        return response;
+      } catch(error) {
+        console.log(error.message);
+      }
     }
     moviesData ?? fetchData();
   }, []);

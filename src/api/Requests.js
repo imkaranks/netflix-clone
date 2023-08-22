@@ -11,7 +11,7 @@ const requests = {
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
   searchOnYoutube: (query) => `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${import.meta.env.VITE_YT_API_KEY}`,
   fetchMovieById: (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`,
-  searchMovieByKeyword: (keyword) => ``
+  searchMovieByKeyword: (keyword, page=1) => `/search/movie?query=${keyword}&api_key=${API_KEY}&page=${page}`
 }
 
 export default requests;

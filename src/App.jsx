@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { MovieProvider } from './context/MovieContext';
 import { VideoProvider } from './context/VideoContext';
-import Home from './pages/Home';
 import Layout from './components/Layout';
-import MovieDetails from './components/MovieDetails';
+import Home from './pages/Home';
+import MovieDetails from './pages/MovieDetails';
+import SearchMovie from './pages/SearchMovie';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
             <Route path='movie/:id' element={<MovieDetails />} />
+            <Route path='search' element={<SearchMovie />} />
           </Route>
         </Routes>
       </VideoProvider>
