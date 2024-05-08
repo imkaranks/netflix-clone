@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   logo,
-  avatar,
+  // avatar,
   menu,
   close,
   search,
   notifications,
-  arrowDropDown,
+  // arrowDropDown,
 } from "@/assets/images";
 import useAuth from "@/hooks/useAuth";
 
@@ -19,6 +19,7 @@ const variant = {
 
 function Navbar() {
   const { user, logOut } = useAuth();
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -39,6 +40,11 @@ function Navbar() {
   const collapseMenu = () => {
     if (!isExpanded) return;
     setIsExpanded(false);
+  };
+
+  const handleLogOut = async () => {
+    await logOut();
+    navigate("/");
   };
 
   const ListItems = () => (
@@ -143,7 +149,7 @@ function Navbar() {
           </li> */}
           {user ? (
             <li className="cursor-pointer flex items-center">
-              <button onClick={logOut}>Logout</button>
+              <button onClick={handleLogOut}>Logout</button>
             </li>
           ) : (
             <>

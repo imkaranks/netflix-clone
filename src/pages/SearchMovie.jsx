@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { requests, axios } from "@/api";
 import Loader from "@/components/Loader";
-import MovieCard from "@/components/MovieCard/MovieCard";
+import MovieCard from "@/components/ui/MovieCard";
 import { search } from "@/assets/images";
 
 function SearchMovie() {
@@ -50,8 +50,8 @@ function SearchMovie() {
       </form>
       {movies && movies.length !== 0 ? (
         <div className="mt-14 flex flex-wrap justify-center gap-4">
-          {movies.map((movie, i) => (
-            <MovieCard key={i} {...movie} />
+          {movies.map((movie, idx) => (
+            <MovieCard key={idx} {...movie} />
           ))}
         </div>
       ) : (

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useCallback, useEffect, useState } from "react";
 import {
   getAuth,
@@ -6,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
 const AuthContext = createContext(null);
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const signUp = useCallback(
     async (email, password) => {
-      const docRef = await addDoc(collection(db, "users"), {
+      const docRef = await setDoc(doc(db, "users", email), {
         favorites: [],
       });
       return createUserWithEmailAndPassword(auth, email, password);
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   const logOut = useCallback(() => {
-    signOut(auth)
+    return signOut(auth)
       .then(() => {
         // Sign-out successful.
         // console.log("signed out");
@@ -41,14 +42,14 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         // An error happened.
-        console.log(error);
+        console.log(error instanceof Error ? error.message : error);
       });
   }, [auth]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
+        // const uid = user.uid;
         setUser(user);
       } else {
         setUser(null);
@@ -63,6 +64,10 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AuthContext;

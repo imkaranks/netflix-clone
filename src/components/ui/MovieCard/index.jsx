@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { motion } from 'framer-motion';
 // import { card } from '@/utils/motion';
@@ -6,7 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import useAuth from "@/hooks/useAuth";
-import "./MovieCard.css";
+import "./index.css";
 
 function MovieCard({
   id,
@@ -41,7 +42,6 @@ function MovieCard({
         genre: genre || "",
       };
       const userDoc = doc(db, "users", user.email);
-      console.log(user);
       try {
         if (favorite) {
           await updateDoc(userDoc, {
@@ -95,5 +95,16 @@ function MovieCard({
     </article>
   );
 }
+
+MovieCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  backdrop_path: PropTypes.string,
+  poster_path: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  original_name: PropTypes.string,
+  genre: PropTypes.string,
+  isFavorite: PropTypes.bool,
+};
 
 export default MovieCard;

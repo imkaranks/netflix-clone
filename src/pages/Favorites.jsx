@@ -1,4 +1,4 @@
-import MoviesSection from "@/components/MoviesSection/MoviesSection";
+import MoviesRow from "@/components/ui/MoviesRow";
 import useFavoriteMovies from "@/hooks/useFavoriteMovies";
 
 export default function Favorites() {
@@ -6,7 +6,7 @@ export default function Favorites() {
 
   return (
     <div className="grid min-h-screen items-center">
-      {movies.length && <MoviesSection title="Favorites" moviesData={movies} />}
+      {movies.length && <MoviesRow title="Favorites" moviesData={movies} />}
     </div>
   );
 }

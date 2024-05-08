@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useState, useEffect, useCallback } from "react";
 import { axios, requests } from "@/api";
 
@@ -52,6 +53,10 @@ export const VideoProvider = ({ children }) => {
       {children}
     </VideoContext.Provider>
   );
+};
+
+VideoProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default VideoContext;

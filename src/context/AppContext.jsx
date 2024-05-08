@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import useFetchedMovies from "../hooks/useFetchedMovies";
-// import { axios } from "../api";
+import PropTypes from "prop-types";
+import useFetchedMovies from "@/hooks/useFetchedMovies";
 
 const AppContext = createContext(null);
 
@@ -12,6 +12,10 @@ export const AppProvider = ({ children }) => {
       {children}
     </AppContext.Provider>
   );
+};
+
+AppProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AppContext;

@@ -4,10 +4,10 @@ const requests = {
   Trending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   "Netflix Originals": `/discover/tv?api_key=${API_KEY}&with_network=213`,
   "Top Rated": `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
-  "Action Movies": `/discover/movie?api_key=${API_KEY}&with_genres=28`,
-  "Comedy Movies": `/discover/movie?api_key=${API_KEY}&with_genres=35`,
-  "Horror Movies": `/discover/movie?api_key=${API_KEY}&with_genres=27`,
-  "Romance Movies": `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+  Action: `/discover/movie?api_key=${API_KEY}&with_genres=28`,
+  Comedy: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
+  Horror: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
+  Romance: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
   Documentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
   searchOnYoutube: (query) =>
     `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${

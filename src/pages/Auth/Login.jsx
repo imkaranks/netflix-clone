@@ -34,7 +34,7 @@ export default function Login() {
     signIn(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/");
+        navigate(-1);
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -46,7 +46,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (user) return navigate("/");
+    if (user) return navigate(-1);
   }, [navigate, user]);
 
   return (

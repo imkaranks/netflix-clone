@@ -33,7 +33,7 @@ export default function Register() {
     signUp(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/");
+        navigate(-1);
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -45,7 +45,7 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (user) return navigate("/");
+    if (user) return navigate(-1);
   }, [navigate, user]);
 
   return (

@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { useRef } from "react";
 import { chevronLeft, chevronRight } from "@/assets/images";
-import MovieCard from "@/components/MovieCard/MovieCard";
-import "./MoviesSection.css";
+import MovieCard from "@/components/ui/MovieCard";
+import "./index.css";
 
-function MoviesSection({ title, moviesData = null, favMovies = null }) {
+function MoviesRow({ title, moviesData = null, favMovies = null }) {
   const sectionRef = useRef(null);
 
   function scrollBack() {
@@ -52,15 +53,17 @@ function MoviesSection({ title, moviesData = null, favMovies = null }) {
   return (
     <section className="py-8">
       <div className="movies__content | relative w-11/12 max-w-7xl mx-auto">
-        <h2
-          className="text-xl text-white font-bold md:text-2xl"
-          // variants={heading}
-          // initial="offscreen"
-          // whileInView="onscreen"
-          // viewport={{ once: true }}
-        >
-          {title}
-        </h2>
+        {title && (
+          <h2
+            className="text-xl text-white font-bold md:text-2xl"
+            // variants={heading}
+            // initial="offscreen"
+            // whileInView="onscreen"
+            // viewport={{ once: true }}
+          >
+            {title}
+          </h2>
+        )}
 
         <div
           className="movies__content-cards | flex gap-4 mt-4 overflow-x-scroll scroll-smooth"
@@ -70,7 +73,7 @@ function MoviesSection({ title, moviesData = null, favMovies = null }) {
           // viewport={{ once: true }}
           ref={sectionRef}
         >
-          {<MovieCards />}
+          <MovieCards />
         </div>
         <button
           className="movies__scroll-control | absolute top-12 bottom-0 -left-6 w-6"
@@ -89,4 +92,10 @@ function MoviesSection({ title, moviesData = null, favMovies = null }) {
   );
 }
 
-export default MoviesSection;
+MoviesRow.propTypes = {
+  title: PropTypes.string.isRequired,
+  moviesData: PropTypes.array,
+  favMovies: PropTypes.array,
+};
+
+export default MoviesRow;

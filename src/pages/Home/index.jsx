@@ -1,10 +1,9 @@
-// import { requests } from "@/api";
 import useVideo from "@/hooks/useVideo";
-import MoviesSection from "@/components/MoviesSection/MoviesSection";
-import Hero from "@/components/Hero";
-import Player from "@/components/Player";
 import useMovies from "@/hooks/useMovies";
 import useFavoriteMovies from "@/hooks/useFavoriteMovies";
+import MoviesRow from "@/components/ui/MoviesRow";
+import Hero from "@/pages/Home/Hero";
+import Player from "@/components/Player";
 
 function Home() {
   const { playerHidden } = useVideo();
@@ -19,7 +18,7 @@ function Home() {
           <h1>Loading...</h1>
         ) : (
           Object.entries(movies).map((row, idx) => (
-            <MoviesSection
+            <MoviesRow
               key={idx}
               title={row[0]}
               moviesData={row[1]}
