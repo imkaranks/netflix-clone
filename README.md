@@ -22,7 +22,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./design/netflix-desktop-view.jpg)
+![Desktop Preview](https://imgur.com/a/m7xCP77)
 
 ### Install and Run the Project
 
@@ -69,7 +69,16 @@ Users should be able to:
 
   ```
   VITE_TMDB_API_KEY=<Your Key Here>
+
   VITE_YT_API_KEY=<Your Key Here>
+
+  VITE_FIREBASE_API_KEY=""
+  VITE_FIREBASE_AUTH_DOMAIN=""
+  VITE_FIREBASE_PROJECT_ID=""
+  VITE_FIREBASE_STORAGE_BUCKET=""
+  VITE_FIREBASE_MESSAGING_SENDER_ID=""
+  VITE_FIREBASE_APP_ID=""
+  VITE_FIREBASE_MEASUREMENT_ID=""
   ```
 
 - Step 4
@@ -96,6 +105,7 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [tailwindcss](https://tailwindcss.com/) - CSS framework
 - [Framer Motion](https://www.framer.com/motion/) - For Animations
+- [Firebase](https://firebase.google.com/) - Backend-as-a-Service (BaaS) app development platform
 
 ## Author
 
