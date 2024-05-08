@@ -22,7 +22,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop Preview](https://imgur.com/a/m7xCP77)
+![Desktop Preview](https://i.imgur.com/bA1ENlK.jpeg)
 
 ### Install and Run the Project
 
