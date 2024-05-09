@@ -3,19 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   logo,
-  // avatar,
+  avatar,
   menu,
   close,
   search,
   notifications,
-  // arrowDropDown,
+  arrowDropDown,
 } from "@/assets/images";
 import useAuth from "@/hooks/useAuth";
 
-const variant = {
-  hide: { x: 50, opacity: 0 },
-  show: { x: 0, opacity: 1 },
-};
+// const variant = {
+//   hide: { x: 50, opacity: 0 },
+//   show: { x: 0, opacity: 1 },
+// };
 
 function Navbar() {
   const { user, logOut } = useAuth();
@@ -49,31 +49,41 @@ function Navbar() {
 
   const ListItems = () => (
     <>
-      <motion.li variants={variant}>
+      <li
+      // variants={variant}
+      >
         <Link to="/" onClick={collapseMenu}>
           Home
         </Link>
-      </motion.li>
-      <motion.li variants={variant}>
+      </li>
+      <li
+      // variants={variant}
+      >
         <Link to="/" onClick={collapseMenu}>
           TV Shows
         </Link>
-      </motion.li>
-      <motion.li variants={variant}>
+      </li>
+      <li
+      // variants={variant}
+      >
         <Link to="/" onClick={collapseMenu}>
           Movies
         </Link>
-      </motion.li>
-      <motion.li variants={variant}>
+      </li>
+      <li
+      // variants={variant}
+      >
         <Link to="/" onClick={collapseMenu}>
           News & Popular
         </Link>
-      </motion.li>
-      <motion.li variants={variant}>
+      </li>
+      <li
+      // variants={variant}
+      >
         <Link to="/favorites" onClick={collapseMenu}>
           My List
         </Link>
-      </motion.li>
+      </li>
     </>
   );
 
@@ -83,7 +93,7 @@ function Navbar() {
         isScrolled ? "bg-[rgba(0,0,0,.75)] backdrop-blur" : ""
       }`}
     >
-      <div className="nav__content | w-11/12 max-w-7xl mx-auto flex gap-6 items-center">
+      <div className="nav__content | w-11/12 max-w-screen-2xl mx-auto flex gap-6 items-center">
         <a href="#main-content" className="sr-only">
           skip to main content
         </a>
@@ -138,19 +148,29 @@ function Navbar() {
               <img src={isExpanded ? close : menu} alt="" role="image" />
             </button>
           </li>
-          {/* <li className="cursor-pointer flex items-center">
-            <img
-              src={avatar}
-              alt="Avatar"
-              className="max-w-[2rem] object-contain"
-              role="image"
-            />
-            <img src={arrowDropDown} alt="" className="w-6" role="image" />
-          </li> */}
           {user ? (
-            <li className="cursor-pointer flex items-center">
-              <button onClick={handleLogOut}>Logout</button>
-            </li>
+            <>
+              <li>
+                <Link to="/me" className="cursor-pointer flex items-center">
+                  <img
+                    src={user?.photoURL || avatar}
+                    alt="Me"
+                    className="max-w-[2rem] object-contain"
+                    role="image"
+                  />
+                  <img
+                    src={arrowDropDown}
+                    alt=""
+                    aria-hidden="true"
+                    className="w-6"
+                    role="image"
+                  />
+                </Link>
+              </li>
+              <li className="cursor-pointer flex items-center">
+                <button onClick={handleLogOut}>Logout</button>
+              </li>
+            </>
           ) : (
             <>
               <li className="cursor-pointer flex items-center">

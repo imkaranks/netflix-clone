@@ -7,6 +7,7 @@ import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Favorites from "@/pages/Favorites";
+import Profile from "@/pages/Profile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             </ProtectedRoute>
           }
         >
+          <Route path="me" element={<Profile />} />
           <Route path="movie/:id" element={<MovieDetails />} />
           <Route path="search" element={<SearchMovie />} />
           <Route path="favorites" element={<Favorites />} />

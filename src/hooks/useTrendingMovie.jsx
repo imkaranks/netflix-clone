@@ -10,14 +10,14 @@ export default function useTrendingMovie() {
       const {
         data: { results },
       } = response;
-      const randomInt = Math.floor(
+      const randomIdx = Math.floor(
         Math.random() * response.data.results.length - 1
       );
       if (
-        results[randomInt]?.backdrop_path ||
-        results[randomInt]?.poster_path
+        results[randomIdx]?.backdrop_path ||
+        results[randomIdx]?.poster_path
       ) {
-        setMovie(results[randomInt]);
+        setMovie(results[randomIdx]);
       } else {
         setMovie(
           results.find((result) => result.backdrop_path || result.poster_path)

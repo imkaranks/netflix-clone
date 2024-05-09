@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
   signOut,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -33,11 +34,17 @@ export const AuthProvider = ({ children }) => {
     [auth]
   );
 
+  const updateUserDetails = useCallback(
+    (userData) => {
+      return updateProfile(auth.currentUser, userData);
+    },
+    [auth]
+  );
+
   const logOut = useCallback(() => {
     return signOut(auth)
       .then(() => {
         // Sign-out successful.
-        // console.log("signed out");
         setUser(null);
       })
       .catch((error) => {
@@ -60,7 +67,9 @@ export const AuthProvider = ({ children }) => {
   }, [auth]);
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signUp, logOut }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signUp, updateUserDetails, logOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

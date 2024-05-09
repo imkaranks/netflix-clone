@@ -7,28 +7,17 @@ import "./index.css";
 function MoviesRow({ title, moviesData = null, favMovies = null }) {
   const sectionRef = useRef(null);
 
-  function scrollBack() {
+  const scrollBack = () => {
     sectionRef.current.scrollLeft -= 261;
-  }
+  };
 
-  function scrollNext() {
+  const scrollNext = () => {
     sectionRef.current.scrollLeft += 261;
-  }
+  };
 
-  function MovieCards() {
+  const MovieCards = () => {
     if (!moviesData) {
-      return (
-        // Array.isArray(fetchedMovies) &&
-        // fetchedMovies
-        //   .slice(0, 6)
-        //   .map(
-        //     (movie, index) =>
-        //       (movie.backdrop_path || movie.poster_path) && (
-        //         <MovieCard key={index} {...movie} />
-        //       )
-        //   )
-        <div>Loading...</div>
-      );
+      return <div>Loading...</div>;
     } else {
       return (
         Array.isArray(moviesData) &&
@@ -48,29 +37,17 @@ function MoviesRow({ title, moviesData = null, favMovies = null }) {
           )
       );
     }
-  }
+  };
 
   return (
     <section className="py-8">
-      <div className="movies__content | relative w-11/12 max-w-7xl mx-auto">
+      <div className="movies__content | relative w-11/12 max-w-screen-2xl mx-auto">
         {title && (
-          <h2
-            className="text-xl text-white font-bold md:text-2xl"
-            // variants={heading}
-            // initial="offscreen"
-            // whileInView="onscreen"
-            // viewport={{ once: true }}
-          >
-            {title}
-          </h2>
+          <h2 className="text-xl text-white font-bold md:text-2xl">{title}</h2>
         )}
 
         <div
-          className="movies__content-cards | flex gap-4 mt-4 overflow-x-scroll scroll-smooth"
-          // initial="offscreen"
-          // whileInView="onscreen"
-          // transition={{ staggerChildren: 0.2 }}
-          // viewport={{ once: true }}
+          className="movies__content-cards | flex gap-4 mt-4 overflow-x-auto scroll-smooth"
           ref={sectionRef}
         >
           <MovieCards />

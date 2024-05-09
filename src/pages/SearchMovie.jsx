@@ -32,7 +32,7 @@ function SearchMovie() {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className="relative w-11/12 max-w-7xl mx-auto py-20">
+    <div className="relative w-11/12 max-w-screen-2xl mx-auto py-20">
       <form
         onSubmit={searchKeyword}
         className="max-w-4xl mx-auto bg-black p-2 rounded-md flex items-center gap-2"

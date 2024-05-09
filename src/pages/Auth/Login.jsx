@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,11 +18,14 @@ const schema = z.object({
 export default function Login() {
   const { user, signIn } = useAuth();
   const navigate = useNavigate();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     defaultValues: initialData,
     resolver: zodResolver(schema),
@@ -30,6 +33,8 @@ export default function Login() {
 
   const onSubmit = (data) => {
     const { email, password } = data;
+
+    setIsSubmitting(true);
 
     signIn(email, password)
       .then((userCredential) => {
@@ -42,6 +47,9 @@ export default function Login() {
         setError("root", {
           message: errorMessage,
         });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -66,12 +74,11 @@ export default function Login() {
             Your email
           </label>
           <input
-            type="text"
+            type="email"
             id="email"
             {...register("email")}
             className="shadow-sm bg-[#161616b3] border border-[#808080b3] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="name@gmail.com"
-            required
           />
           {errors.email && (
             <span className="text-sm text-red-500">{errors.email.message}</span>

@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { motion } from 'framer-motion';
-// import { card } from '@/utils/motion';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
@@ -63,8 +61,7 @@ function MovieCard({
 
   return (
     <article
-      className={`movie | relative basis-[200px] md:basis-[245px] flex-shrink-0 text-white loadable cursor-pointer`}
-      // variants={card}
+      className={`movie group | relative basis-[200px] md:basis-[245px] flex-shrink-0 text-white loadable cursor-pointer`}
     >
       <button
         className="z-10 aspect-square bg-red-500 w-6 rounded-full absolute top-2 right-2 border-none bg-transparent"
@@ -73,7 +70,7 @@ function MovieCard({
         {favorite ? "❤" : "🤍"}
       </button>
       <Link to={`/movie/${id}`}>
-        {typeof genre == "string" && (
+        {genre && typeof genre == "string" && (
           <span className="absolute top-2 left-2 z-10 text-xs w-fit text-white font-semibold px-4 py-2 rounded-full bg-black/40 backdrop-blur-md">
             {genre}
           </span>

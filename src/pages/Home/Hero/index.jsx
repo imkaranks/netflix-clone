@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { play, info } from "@/assets/images";
 import { truncate } from "@/utils";
-import { heading, button } from "@/utils/motion";
+import { button } from "@/utils/motion";
 import useVideo from "@/hooks/useVideo";
 import useTrendingMovie from "@/hooks/useTrendingMovie";
 
@@ -10,34 +10,34 @@ function Hero() {
   const { handleClick } = useVideo();
   const { movie } = useTrendingMovie();
 
-  const bgStyles = {
-    backgroundImage: `url(https://image.tmdb.org/t/p/original${
-      movie?.backdrop_path || movie?.poster_path
-    })`,
+  const movieName = movie?.name || movie?.title || movie?.original_name;
+  const moviePoster = movie?.backdrop_path || movie?.poster_path;
+
+  const heroStyles = {
+    backgroundImage: `url(https://image.tmdb.org/t/p/original${moviePoster})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
   };
 
+  const overlayStyles = {
+    backgroundImage:
+      "linear-gradient(90deg, hsl(0 0% 0% / 65%) 35%, transparent)",
+  };
+
   return (
     <section
       className="relative py-16 isolate min-h-screen grid items-center"
-      style={bgStyles}
+      style={heroStyles}
     >
-      <div className="w-11/12 max-w-[7xl] mx-auto grid gap-4">
+      <div className="w-11/12 max-w-screen-2xl mx-auto grid gap-4">
         <div className="max-w-[70ch] grid gap-4">
           <span className="w-fit text-white font-semibold px-4 py-2 rounded-full bg-white/20 backdrop-blur-md">
             New Movie
           </span>
-          <motion.h1
-            className="text-5xl text-white font-bold sm:text-6xl md:text-7xl lg:text-[84px]"
-            variants={heading}
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-          >
-            {movie?.name || movie?.title || movie?.original_name}
-          </motion.h1>
+          <h1 className="text-5xl text-white font-bold sm:text-6xl md:text-7xl lg:text-[84px]">
+            {movieName}
+          </h1>
           <p className="leading-relaxed">{truncate(movie?.overview)}</p>
         </div>
         <div className="flex flex-wrap items-center gap-4 mt-4">
@@ -48,10 +48,8 @@ function Hero() {
             whileTap="tap"
             onClick={() =>
               handleClick(
-                movie?.name || movie?.title || movie?.original_name,
-                `https://image.tmdb.org/t/p/original${
-                  movie?.backdrop_path || movie?.poster_path
-                }`
+                movieName,
+                `https://image.tmdb.org/t/p/original${moviePoster}`
               )
             }
           >
@@ -76,13 +74,7 @@ function Hero() {
           </Link>
         </div>
       </div>
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, hsl(0 0% 0% / 65%) 35%, transparent)",
-        }}
-      ></div>
+      <div className="absolute inset-0 -z-10" style={overlayStyles}></div>
     </section>
   );
 }
