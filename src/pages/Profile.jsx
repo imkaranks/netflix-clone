@@ -61,21 +61,21 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen grid place-items-center max-sm:pt-20">
+    <div className="grid min-h-screen place-items-center max-sm:pt-20">
       <form className="w-11/12 max-w-lg" onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
-          <legend className="w-full text-4xl md:text-5xl text-white font-medium pb-4 border-b border-b-white/20">
+          <legend className="w-full border-b border-b-white/20 pb-4 text-4xl font-medium text-white md:text-5xl">
             Edit Profile
           </legend>
-          <div className="my-6 flex max-sm:flex-col max-sm:items-center gap-4 pb-4 border-b border-b-white/20">
-            <div className="flex-[0.3] relative">
+          <div className="my-6 flex gap-4 border-b border-b-white/20 pb-4 max-sm:flex-col max-sm:items-center">
+            <div className="relative flex-[0.3]">
               <img
-                className="w-full max-md:max-w-[10rem] aspect-square object-cover object-center"
+                className="aspect-square w-full object-cover object-center max-md:max-w-[10rem]"
                 src={user?.photoURL || defaultAvatar}
                 alt=""
               />
             </div>
-            <div className="flex-1 max-sm:w-full grid gap-4 items-start">
+            <div className="grid flex-1 items-start gap-4 max-sm:w-full">
               <div className="grid gap-1">
                 <input
                   type="text"
@@ -125,7 +125,7 @@ export default function Profile() {
               <>
                 <button
                   disabled={submitting}
-                  className={`border border-white disabled:opacity-75 bg-white text-black p-[0.25em_1.5em] font-medium ${
+                  className={`border border-white bg-white p-[0.25em_1.5em] font-medium text-black disabled:opacity-75 ${
                     submitting ? "cursor-wait" : "cursor-pointer"
                   }`}
                 >
@@ -134,7 +134,7 @@ export default function Profile() {
                 <button
                   type="button"
                   onClick={cancelEdit}
-                  className="border border-white bg-transparent text-white p-[0.25em_1.5em] font-medium"
+                  className="border border-white bg-transparent p-[0.25em_1.5em] font-medium text-white"
                 >
                   Cancel
                 </button>
@@ -146,7 +146,7 @@ export default function Profile() {
                   e.preventDefault();
                   setEditMode(true);
                 }}
-                className="border border-white bg-white text-black p-[0.25em_1.5em] font-medium"
+                className="border border-white bg-white p-[0.25em_1.5em] font-medium text-black"
               >
                 Edit
               </button>

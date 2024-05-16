@@ -27,38 +27,38 @@ function Hero() {
 
   return (
     <section
-      className="relative py-16 isolate min-h-screen grid items-center"
+      className="relative isolate grid min-h-screen items-center py-16"
       style={heroStyles}
     >
-      <div className="w-11/12 max-w-screen-2xl mx-auto grid gap-4">
-        <div className="max-w-[70ch] grid gap-4">
-          <span className="w-fit text-white font-semibold px-4 py-2 rounded-full bg-white/20 backdrop-blur-md">
+      <div className="mx-auto grid w-11/12 max-w-screen-2xl gap-4">
+        <div className="grid max-w-[70ch] gap-4">
+          <span className="w-fit rounded-full bg-white/20 px-4 py-2 font-semibold text-white backdrop-blur-md">
             New Movie
           </span>
-          <h1 className="text-5xl text-white font-bold sm:text-6xl md:text-7xl lg:text-[84px]">
+          <h1 className="text-5xl font-bold text-white sm:text-6xl md:text-7xl lg:text-[84px]">
             {movieName}
           </h1>
           <p className="leading-relaxed">{truncate(movie?.overview)}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-4 mt-4">
+        <div className="mt-4 flex flex-wrap items-center gap-4">
           <motion.button
-            className="bg-neutral-100 inline-flex items-center gap-2 border border-white py-2 px-6 text-black font-semibold rounded-full"
+            className="inline-flex items-center gap-2 rounded-full border border-white bg-neutral-100 px-6 py-2 font-semibold text-black"
             variants={button}
             whileHover="hover"
             whileTap="tap"
             onClick={() =>
               handleClick(
                 movieName,
-                `https://image.tmdb.org/t/p/original${moviePoster}`
+                `https://image.tmdb.org/t/p/original${moviePoster}`,
               )
             }
           >
-            <img src={play} alt="" className="w-8 aspect-square" role="image" />
+            <img src={play} alt="" className="aspect-square w-8" role="image" />
             Play Now
           </motion.button>
           <Link to={`/movie/${movie.id}`}>
             <motion.button
-              className="bg-white/5 backdrop-blur-sm inline-flex items-center gap-2 border border-white py-2 px-6 text-white font-semibold rounded-full"
+              className="inline-flex items-center gap-2 rounded-full border border-white bg-white/5 px-6 py-2 font-semibold text-white backdrop-blur-sm"
               variants={button}
               whileHover="hover"
               whileTap="tap"
@@ -66,7 +66,7 @@ function Hero() {
               <img
                 src={info}
                 alt=""
-                className="w-8 aspect-square"
+                className="aspect-square w-8"
                 role="image"
               />
               More Info

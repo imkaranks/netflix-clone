@@ -9,7 +9,7 @@ function Player() {
 
   return (
     <motion.div
-      className="fixed right-4 bottom-4"
+      className="fixed bottom-4 right-4"
       initial={{ scale: 0 }}
       animate={{ scale: isVideoLoaded ? 1 : 0 }}
     >

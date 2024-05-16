@@ -58,18 +58,18 @@ export default function Register() {
   }, [navigate, user]);
 
   return (
-    <div className="min-h-screen grid place-items-center">
+    <div className="grid min-h-screen place-items-center">
       <form
-        className="bg-black/20 p-8 grid w-11/12 md:w-3/5 max-w-md mx-auto"
+        className="mx-auto grid w-11/12 max-w-md bg-black/20 p-8 md:w-3/5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="text-white text-2xl md:text-3xl font-bold mb-5 md:mb-8">
+        <h1 className="mb-5 text-2xl font-bold text-white md:mb-8 md:text-3xl">
           Sign Up
         </h1>
         <div className="mb-5">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
           >
             Your email
           </label>
@@ -77,7 +77,7 @@ export default function Register() {
             type="email"
             id="email"
             {...register("email")}
-            className="shadow-sm bg-[#161616b3] border border-[#808080b3] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="block w-full rounded-lg border border-[#808080b3] bg-[#161616b3] p-2.5 text-sm text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
             placeholder="name@gmail.com"
           />
           {errors.email && (
@@ -87,7 +87,7 @@ export default function Register() {
         <div className="mb-5">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
           >
             Your password
           </label>
@@ -95,7 +95,7 @@ export default function Register() {
             type="password"
             id="password"
             {...register("password")}
-            className="shadow-sm bg-[#161616b3] border border-[#808080b3] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="block w-full rounded-lg border border-[#808080b3] bg-[#161616b3] p-2.5 text-sm text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
           {errors.password && (
@@ -104,7 +104,7 @@ export default function Register() {
             </span>
           )}
           {errors.root && (
-            <span className="text-sm text-center text-red-500">
+            <span className="text-center text-sm text-red-500">
               {errors.root.message}
             </span>
           )}
@@ -113,7 +113,7 @@ export default function Register() {
           disabled={isSubmitting}
           className={`${
             isSubmitting ? "cursor-wait" : "cursor-pointer"
-          } disabled:opacity-75 text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+          } rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-300 disabled:opacity-75`}
         >
           Register
         </button>

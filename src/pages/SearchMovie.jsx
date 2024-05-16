@@ -24,7 +24,7 @@ function SearchMovie() {
 
   if (error) {
     return (
-      <div className="min-h-screen grid place-items-center">
+      <div className="grid min-h-screen place-items-center">
         <h1>{error.message || "No Data Found"}</h1>
       </div>
     );
@@ -32,14 +32,14 @@ function SearchMovie() {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className="relative w-11/12 max-w-screen-2xl mx-auto py-20">
+    <div className="relative mx-auto w-11/12 max-w-screen-2xl py-20">
       <form
         onSubmit={searchKeyword}
-        className="max-w-4xl mx-auto bg-black p-2 rounded-md flex items-center gap-2"
+        className="mx-auto flex max-w-4xl items-center gap-2 rounded-md bg-black p-2"
       >
         <input
           type="text"
-          className="bg-transparent outline-none flex-1"
+          className="flex-1 bg-transparent outline-none"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="Search by name"
@@ -56,7 +56,7 @@ function SearchMovie() {
         </div>
       ) : (
         <div className="mt-20 text-center">
-          <h1 className="text-3xl sm:text-4xl text-white">Nothing to see 😔</h1>
+          <h1 className="text-3xl text-white sm:text-4xl">Nothing to see 😔</h1>
         </div>
       )}
     </div>

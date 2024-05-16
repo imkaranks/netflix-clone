@@ -61,17 +61,17 @@ function MovieCard({
 
   return (
     <article
-      className={`movie group | relative basis-[200px] md:basis-[245px] flex-shrink-0 text-white loadable cursor-pointer`}
+      className={`movie | loadable group relative flex-shrink-0 basis-[200px] cursor-pointer text-white md:basis-[245px]`}
     >
       <button
-        className="z-10 aspect-square bg-red-500 w-6 rounded-full absolute top-2 right-2 border-none bg-transparent"
+        className="absolute right-2 top-2 z-10 aspect-square w-6 rounded-full border-none bg-red-500 bg-transparent"
         onClick={toggleFavorite}
       >
         {favorite ? "❤" : "🤍"}
       </button>
       <Link to={`/movie/${id}`}>
         {genre && typeof genre == "string" && (
-          <span className="absolute top-2 left-2 z-10 text-xs w-fit text-white font-semibold px-4 py-2 rounded-full bg-black/40 backdrop-blur-md">
+          <span className="absolute left-2 top-2 z-10 w-fit rounded-full bg-black/40 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md">
             {genre}
           </span>
         )}
@@ -84,7 +84,7 @@ function MovieCard({
             alt={name || title || original_name}
             className={`${
               imageLoading ? "opacity-0" : ""
-            } w-full h-[10rem] object-cover rounded-md transition-transform ease hover:scale-110`}
+            } ease h-[10rem] w-full rounded-md object-cover transition-transform hover:scale-110`}
             onLoad={imageLoaded}
           />
         </div>
